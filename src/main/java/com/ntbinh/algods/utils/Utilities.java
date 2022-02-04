@@ -17,6 +17,15 @@ public class Utilities {
         System.out.println("");
     }
 
+    public static <T> void display(Node<T> head) {
+        Node<T> temp = head;
+        while (temp != null) {
+            System.out.print(temp.value.toString() + " ");
+            temp = temp.next;
+        }
+        System.out.println("");
+    }
+
     public static Point2D[] generateRandomPoints(int size) {
         Point2D[] points = new Point2D[size];
         for (int i = 0; i < size; i++) {
