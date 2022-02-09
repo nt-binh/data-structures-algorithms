@@ -1,7 +1,7 @@
 package com.ntbinh.algods.algorithms.sort;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class MergeSort {
+public class MergeSort extends BaseSort {
 
     private static Comparable[] left;
     private static Comparable[] right;
