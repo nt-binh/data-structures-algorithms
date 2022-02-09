@@ -4,10 +4,18 @@ package com.ntbinh.algods.utils;
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdRandom;
 
+@SuppressWarnings("rawtypes")
 public class Utilities {
     
     public static void display(Object str) {
         System.out.println(str.toString());
+    }
+
+    public static void display(Comparable[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println("");
     }
     
     public static void display(int[] arr) {
