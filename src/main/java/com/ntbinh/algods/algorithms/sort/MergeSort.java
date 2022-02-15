@@ -1,10 +1,13 @@
 package com.ntbinh.algods.algorithms.sort;
 
+import com.ntbinh.algods.utils.Utilities;
+
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class MergeSort {
+public class MergeSort extends BaseSort {
 
     private static Comparable[] left;
     private static Comparable[] right;
+    private static final int CUTOFF = 7;
 
     private static void merge(Comparable[] arr, int low, int mid, int high) {
         int n1 = mid - low + 1;
@@ -13,28 +16,37 @@ public class MergeSort {
         left = new Comparable[n1];
         right = new Comparable[n2];
 
-        for (int i = low; i <= high; i++) {
-            if (i <= mid) left[i] = arr[i];
-            else right[i-mid-1] = arr[i];
+        for (int i = 0; i < n1; i++) {
+            left[i] = arr[low + i];
         }
-
+        for (int i = 0; i < n2; i++) {
+            right[i] = arr[mid + 1 + i];
+        }
         int i = 0, j = 0;
         int k = low;
-        while (i < n1 && j < n2) {
-            if (left[i].compareTo(right[j]) <= 0) {
+        while (i < n1 || j < n2) {
+            if (i == n1) {
+                arr[k++] = right[j++];
+            } else if (j == n2) {
+                arr[k++] = left[i++];
+            } else if (less(left[i], right[j])) {
                 arr[k++] = left[i++];
             } else {
-                arr[k++] = right[j];
+                arr[k++] = right[j++];
             }
         }
-        
     }
 
     private static void mergeSort(Comparable[] arr, int low, int high) {
+        if (low + CUTOFF >= high) {
+            InsertionSort.sort(arr, low, high);
+            return;
+        }
         int mid = low + (high - low)/2;
         mergeSort(arr, low, mid);
         mergeSort(arr, mid+1, high);
-        merge(arr, low, mid, high);
+        if (less(arr[mid+1], arr[mid]))
+            merge(arr, low, mid, high);
     }
 
     public static void sort(Comparable[] arr) {
