@@ -10,6 +10,10 @@ public class BaseSort {
         return a.compareTo(b) < 0;
     }    
 
+    protected static boolean less(Comparable[] arr, int i, int j) {
+        return arr[i].compareTo(arr[j]) < 0;
+    }
+
     protected static void exch(Comparable[] arr, int i, int j) {
         Comparable temp = arr[i];
         arr[i] = arr[j];
